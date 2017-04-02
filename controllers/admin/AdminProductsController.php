@@ -2539,7 +2539,7 @@ class AdminProductsControllerCore extends AdminController
     {
         $time = time();
         $kpis = array();
-        
+
         /* The data generation is located in AdminStatsControllerCore */
 
         if (Configuration::get('PS_STOCK_MANAGEMENT')) {
