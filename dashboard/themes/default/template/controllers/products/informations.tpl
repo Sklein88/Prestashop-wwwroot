@@ -155,7 +155,7 @@
 			</span>
 		</label>
 		<div class="col-lg-5">
-			<input type="text" id="reference" testgithub="no" name="reference" value="{$product->reference|htmlentitiesUTF8}" {if $product->id == 0}placeholder="Reference code is auto generated" {/if} disabled="disabled" />
+			<input type="text" id="reference" testgithub="nolooooooooooooooooooo" name="reference" value="{$product->reference|htmlentitiesUTF8}" {if $product->id == 0}placeholder="Reference code is auto generated" {/if} disabled="disabled" />
 		</div>
 	</div>
 
