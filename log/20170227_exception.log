@@ -1,0 +1,61 @@
+*ERROR* 	2017/02/27 - 18:12:25: Can't update table 'ps_product' in stored function/trigger because it is already used by statement which invoked this stored function/trigger.<br /><br /><pre>INSERT IGNORE INTO `ps_product_lang` (`id_product`, `id_shop`, `id_lang`, `description`, `description_short`, `link_rewrite`, `meta_description`, `meta_keywords`, `meta_title`, `name`, `available_now`, `available_later`) (SELECT `id_product`,(
+							SELECT `id_shop`
+							FROM `ps_product_lang` tl
+							WHERE tl.`id_lang` = 1
+							 AND tl.`id_shop` = 1
+							AND tl.`id_product` = `ps_product`.`id_product`
+						),`id_lang`,(
+							SELECT `description`
+							FROM `ps_product_lang` tl
+							WHERE tl.`id_lang` = 1
+							 AND tl.`id_shop` = 1
+							AND tl.`id_product` = `ps_product`.`id_product`
+						),(
+							SELECT `description_short`
+							FROM `ps_product_lang` tl
+							WHERE tl.`id_lang` = 1
+							 AND tl.`id_shop` = 1
+							AND tl.`id_product` = `ps_product`.`id_product`
+						),(
+							SELECT `link_rewrite`
+							FROM `ps_product_lang` tl
+							WHERE tl.`id_lang` = 1
+							 AND tl.`id_shop` = 1
+							AND tl.`id_product` = `ps_product`.`id_product`
+						),(
+							SELECT `meta_description`
+							FROM `ps_product_lang` tl
+							WHERE tl.`id_lang` = 1
+							 AND tl.`id_shop` = 1
+							AND tl.`id_product` = `ps_product`.`id_product`
+						),(
+							SELECT `meta_keywords`
+							FROM `ps_product_lang` tl
+							WHERE tl.`id_lang` = 1
+							 AND tl.`id_shop` = 1
+							AND tl.`id_product` = `ps_product`.`id_product`
+						),(
+							SELECT `meta_title`
+							FROM `ps_product_lang` tl
+							WHERE tl.`id_lang` = 1
+							 AND tl.`id_shop` = 1
+							AND tl.`id_product` = `ps_product`.`id_product`
+						),(
+							SELECT `name`
+							FROM `ps_product_lang` tl
+							WHERE tl.`id_lang` = 1
+							 AND tl.`id_shop` = 1
+							AND tl.`id_product` = `ps_product`.`id_product`
+						),(
+							SELECT `available_now`
+							FROM `ps_product_lang` tl
+							WHERE tl.`id_lang` = 1
+							 AND tl.`id_shop` = 1
+							AND tl.`id_product` = `ps_product`.`id_product`
+						),(
+							SELECT `available_later`
+							FROM `ps_product_lang` tl
+							WHERE tl.`id_lang` = 1
+							 AND tl.`id_shop` = 1
+							AND tl.`id_product` = `ps_product`.`id_product`
+						) FROM `ps_lang` CROSS JOIN `ps_product`)</pre> at line 791 in file classes/db/Db.php

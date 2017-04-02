@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>combinationsfile</name>
+	<displayName><![CDATA[Virtual product combinations with associated file]]></displayName>
+	<version><![CDATA[1.4.4]]></version>
+	<description><![CDATA[Generate new combinations for your PrestaShop virtual products. Easily upload associated files and let your customers obtain a full range of information on the products they are interested in.]]></description>
+	<author><![CDATA[MyPrestaModules]]></author>
+	<tab><![CDATA[front_office_features]]></tab>
+	<is_configurable>0</is_configurable>
+	<need_instance>0</need_instance>
+	<limited_countries></limited_countries>
+</module>

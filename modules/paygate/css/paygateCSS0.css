@@ -1,0 +1,225 @@
+#PGIOscreen table,#PGIOscreen div,#PGIOscreen p,#PGIOscreen span,#PGIOscreen input,#PGIOscreen label {
+	color: black;
+}
+
+#PGIOscreen {
+	font-family:verdana;
+	color:#000000;
+	text-align: left;
+}
+#PGIOscreen table {
+	border:1px solid white;
+	background-color:#dad5d1;
+}
+#PGIOscreen textarea {
+	border:1px solid #eeeeee; 
+	padding:10px; 
+	width:97%; 
+	height:100px; 
+	background-color:#Ffffff; 
+	color:#000000; 
+	font-size:11px; 
+	font-family:verdana;
+}
+#PGIOscreen td{
+	color:#000000; 
+	font-family:ariall; 
+	font-size: 9pt; 
+	line-height:14px;
+	background-color:#dad5d1;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-bottom: 4px;
+	padding-top: 4px;
+}
+#PGIOscreen input {
+	border: #707070 1px solid; 
+	background-color:#Ffffff; 
+	font-size:11px; 
+	height:20px; 
+	color: #000000; 
+	font-family:verdana; 
+	padding:3px 0 0 3px;
+}
+#PGIOscreen select {
+	font-family:verdana; 
+	font-size:10pt; 
+	padding-top:3px; 
+	cursor: pointer; 
+	background-color:#ffffff;
+}
+
+#PGIOscreen {
+	font-size: 12px;
+	border-top: 1px solid #8181A2;
+	border-bottom: 1px solid #8181A2;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#PGIOscreen a:link {text-decoration:none; color:#3B3BB2; }
+#PGIOscreen a:visited {text-decoration:none; color:#3B3BB2; }
+#PGIOscreen a:hover {text-decoration:underline; color:#3B3BB2; }
+#PGIOscreen a:active {text-decoration:none; color:#3B3BB2; }
+
+#X_ANSIM_FRAME {
+	position:absolute;
+	left:0;
+	top:0;
+}
+
+#opa_osk_title {
+}
+
+.opa_osk {
+	float: left;
+}
+
+.opa_card {
+	width : 200px;
+}
+
+.opa_hint_string {
+	float:right;
+	font-size: 75%;
+	color: #314B71;
+	font-weight: normal;
+}
+
+#opa_osk {
+	padding:0;
+	margin:0;
+	/* background: url("@GATEWAY@/ajax/images/numberpad.gif") no-repeat 2px 2px; */
+	text-align: center;
+	
+}
+
+#opa_osk input {
+	height: 24px;
+	width: 21px;
+	color:white;
+	font-size: 12px;
+	border: 2px outset #E7E7E7;
+	background-color: #217BDE;
+	margin: 2px 0 2px 2px;
+	cursor: pointer;
+}
+
+#opa_form_title {
+	font-size: 12px;
+	border: 1px solid gray;
+	border-bottom: 0;
+	font-weight: bold;
+	margin: 0;
+	padding: 5px;
+	background-color: #C6DEFF;
+}
+
+
+#opa_form_content, #opa_form_content2 {
+	text-align:left;
+	font-size: 12px;
+	border: 1px solid gray;
+	background-color: #EDF5FA;
+	padding: 5px;
+}
+
+#opa_form_content p {
+	font-size: 12px;
+	margin: 0 0 7px 0;
+	padding:0;
+}
+
+#opa_form_content table {
+	border-width: 0;
+	border-collapse: collapse;
+	width:96%;
+	margin-top: 2px;
+	padding:0;
+}
+
+#opa_form_content td {
+	background-color: #EDF5FA;
+	font-size:12px;
+	height: 20px;
+}
+
+#opa_form_content input,#opa_form_content select,#opa_form_content span {
+	font-size:12px;
+	margin: 2px;
+}
+
+
+#opa_form_content label {
+	font-size: 12px;
+	float: left;
+	width: 80px;
+}
+
+#opa_form_content2 label {
+	font-size: 12px;
+	float: left;
+	width: 80px;
+}
+
+#opa_form_content2 input{
+	margin: 0px 3px 1px 0px; 
+	width: 13px;
+	height:  13px;
+}
+
+#opa_form_content .readonly {
+	border-width: 0;
+	background-color: #EDF5FA;
+}
+
+.opa_hint {
+	border: 1px solid gray;
+	padding: 3px;
+	font-size:12px;
+	margin-bottom: 5px;
+}
+
+.opa_emphasis {
+	color: blue;
+	font-weight: bold;
+}
+
+.opa_notice {
+	color: red;
+	font-weight: bold;
+}
+
+.opa_button {
+	cursor: pointer;
+}
+
+.opa_center {
+	text-align: center;
+}
+
+.opa_error {
+	border: 1px solid red;
+	/* text-align: center; */
+	color: red;
+	text-align: left;
+	padding: 3px;
+	margin: 3px;
+}
+
+#opa_form_command {
+	text-align: right;
+	border: 1px solid gray;
+	border-top: 0;
+	margin: 0;
+	padding: 5px;
+	background-color: #C6DEFF;
+}
+
+#opa_form_command input {
+	border: 1px solid #777777;
+	margin: 3px 10px 3px 0;
+	padding: 5px;
+	height: 25px;
+	font-size: 12px;
+}

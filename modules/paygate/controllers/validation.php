@@ -1,0 +1,121 @@
+<?php
+/*
+* 2007-2011 PrestaShop 
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Academic Free License (AFL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/afl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@prestashop.com so we can send you a copy immediately.
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade PrestaShop to newer
+* versions in the future. If you wish to customize PrestaShop for your
+* needs please refer to http://www.prestashop.com for more information.
+*
+*  @author PrestaShop SA <contact@prestashop.com>
+*  @copyright  2007-2011 PrestaShop SA
+*  @version  Release: $Revision: 6907 $
+*  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+*  International Registered Trademark & Property of PrestaShop SA
+*/
+
+include(dirname(__FILE__).'/../../../config/config.inc.php');
+include(dirname(__FILE__).'/../paygate.php');
+
+$paygate = new Paygate();
+
+$errors = array();
+
+/* Check for mandatory fields */
+/*$requiredFields = array('replycode', 'mid', 'ref', 'cur', 'amt');
+
+foreach ($requiredFields AS $field)
+	if (!isset($_POST[$field]))
+		$errors[] = 'Missing field '.$field;*/
+
+$status = 1;	//0-failed, 1-success
+
+// unitprice 는 2.00 을 2로 변경하므로 amt 변수를 따로 사용 
+$amt = $_POST['amt'];
+$tid = $_POST['tid'];
+$paymethod_name = $_POST['paymethod_name'];
+$returnurl = $_POST['returnurl'];
+
+//$amtString = strval($amt);
+//$amtarr = explode(".", strval($amt));
+//if($amtarr[1]=="00")
+//	$amt = (number_format($amt, 1, '.', ''));
+
+//echo'<script>alert("replycode::'.$_POST['replycode'].'");</script>';
+/* Check for SHA256 signature */
+
+$pg_k_mid = (Tools::getValue('pg_k_mid', Configuration::get('PG_K_MID')));
+$pg_f_mid = (Tools::getValue('pg_f_mid', Configuration::get('PG_F_MID')));
+
+// 국내,해외 mid 중 값이 없으면 있는값으로 대체.
+if(!$pg_k_mid){$pg_k_mid=$pg_f_mid;}
+if(!$pg_f_mid){$pg_f_mid=$pg_k_mid;}
+
+if($_POST['replycode'] == '0000'){
+
+	$linkBuf = Configuration::get('PG_SECRETKEY'). "?mid=" . $pg_k_mid ."&ref=" . $_POST['ref'] ."&cur=" .$_POST['cur'] ."&amt=" .$amt;
+	$newFgkey = hash("sha256", $linkBuf);
+	
+	if ($newFgkey != strtolower($_POST['fgkey'])){
+		$errors[] = 'Please double-check your Paygate account to make sure you have received the payment (Yours / Paygate) ['.$newFgkey.'] ['.$_POST['fgkey'].']';
+	}	
+}else{
+	$errors[] = $_POST['replyMsg'];
+}
+
+$message = '';
+foreach ($_POST AS $key => $value)
+	$message .= $key.': '.$value."\n";
+	
+if(sizeof($errors))
+{
+	$message .= sizeof($errors).' error(s):'."\n";
+	
+	/* Force status to 0 - ERROR ! */
+	$status = 0;
+}
+
+foreach ($errors AS $error)
+	$message .= $error."\n";
+$message = nl2br(strip_tags($message));
+
+$id_cart = $_POST['goodoption1'];
+$secure_cart = explode('_', $_POST['ref']);
+
+
+if (!isset($secure_cart[1]))
+	$secure_cart[1] = 'KO';
+
+$payment_status = _PS_OS_PAYMENT_;
+if($paymethod_name == 'PG_J_BANKWIRE' || $paymethod_name == 'PG_INPAY'){
+	$payment_status = _PS_OS_WS_PAYMENT_;
+}
+
+
+
+switch ($status)
+{	
+	/* Payment OK */
+	case 1:
+		//echo'<script>parent.f_goOrdrHistory();</script>';
+		$paygate->validateOrder((int)($secure_cart[0]), $payment_status, (float)$_POST['amt'], $paygate->displayName, $message, array('transaction_id' => $tid), NULL, false, $secure_cart[2]);		 	     
+		break;
+
+	/* Unknown or error */
+	default:
+		$paygate->validateOrder((int)($secure_cart[0]), _PS_OS_ERROR_, 0, $paygate->displayName, $message, array('transaction_id' =>  $tid), NULL, false, $secure_cart[2]);
+		break;
+}
+
+echo'<script>location.href="'.$returnurl.'"</script>';
